@@ -14,7 +14,7 @@ What things you need to install the software and how to install them
 MAC : brew install pyqt5
 ```
 
-### program execution
+## program execution
 <img width="279" alt="스크린샷 2022-11-04 오전 11 07 36" src="https://user-images.githubusercontent.com/77061306/199869749-c0d8a6bc-b020-4eac-a198-a912f726f1d5.png">
 
 It is a calculator that can perform arithmetic operations.
@@ -30,7 +30,7 @@ Please read [CONTRIBUTING.md](https://github.com/leejaejjun/gui_calculater/blob/
 
 ## Authors
 
-* **koreant** - *Initial work* - pukyong university student
+* **Lee jaejun(koreant)** - *Initial work* - pukyong university student
 
 See also the list of [contributors](not yet) who participated in this project.
 
