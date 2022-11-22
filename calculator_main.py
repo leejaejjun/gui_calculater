@@ -22,6 +22,8 @@ class Main(QDialog):
         label_solution = QLabel("Number: ")
         self.equation = QLineEdit("")
         self.solution = QLineEdit("")
+        
+        ##test
 
         ### layout_equation_solution 레이아웃에 수식, 답 위젯을 추가
         layout_equation_solution.addRow(label_equation, self.equation)
