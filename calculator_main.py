@@ -6,6 +6,8 @@ class Main(QDialog):
         super().__init__()
         self.init_ui()
 
+    ##main branch test
+
     def init_ui(self):
         main_layout = QVBoxLayout()
 
