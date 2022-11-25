@@ -6,13 +6,15 @@ class Main(QDialog):
         super().__init__()
         self.init_ui()
 
-    ##start ui fixs
+    ##start ui adds
     def init_ui(self):
         main_layout = QVBoxLayout()
+        sub_layout = QVBoxLayout()
+        sub2_layout = QHBoxLayout()
 
         ### 각 위젯을 배치할 레이아웃을 미리 만들어 둠
-        layout_operation = QHBoxLayout()
-        layout_clear_equal = QHBoxLayout()
+        layout_operation = QGridLayout()
+        layout_clear_equal = QGridLayout()
         layout_number = QGridLayout()
         layout_equation_solution = QFormLayout()
 
@@ -27,37 +29,57 @@ class Main(QDialog):
         layout_equation_solution.addRow(label_solution, self.solution)
 
         ### 사칙연상 버튼 생성
+        button_backspace = QPushButton("Backspace")
         button_plus = QPushButton("+")
         button_minus = QPushButton("-")
         button_product = QPushButton("x")
         button_division = QPushButton("/")
+        button_equal = QPushButton("=")
 
         ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정
+        button_equal.clicked.connect(self.button_equal_clicked)
         button_plus.clicked.connect(lambda state, operation = "+": self.button_operation_clicked(operation))
         button_minus.clicked.connect(lambda state, operation = "-": self.button_operation_clicked(operation))
         button_product.clicked.connect(lambda state, operation = "*": self.button_operation_clicked(operation))
         button_division.clicked.connect(lambda state, operation = "/": self.button_operation_clicked(operation))
-
+        button_backspace.clicked.connect(self.button_backspace_clicked)
+        
+        
         ### 사칙연산 버튼을 layout_operation 레이아웃에 추가
+        layout_operation.addWidget(button_backspace)
         layout_operation.addWidget(button_plus)
         layout_operation.addWidget(button_minus)
         layout_operation.addWidget(button_product)
         layout_operation.addWidget(button_division)
+        layout_operation.addWidget(button_equal)
+        
+        
 
-        ### =, clear, backspace 버튼 생성
-        button_equal = QPushButton("=")
-        button_clear = QPushButton("Clear")
-        button_backspace = QPushButton("Backspace")
+        ### %, CE, CE 버튼 생성
+        button_clear = QPushButton("C")
+        button_percent = QPushButton("%")
+        button_CE = QPushButton("CE")
+        button_inverse = QPushButton("1/x")
+        button_pow = QPushButton("x^2")
+        button_square = QPushButton("2√x")
+        
 
-        ### =, clear, backspace 버튼 클릭 시 시그널 설정
-        button_equal.clicked.connect(self.button_equal_clicked)
+        ### %, CE, CE 버튼 클릭 시 시그널 설정
         button_clear.clicked.connect(self.button_clear_clicked)
-        button_backspace.clicked.connect(self.button_backspace_clicked)
+        button_percent.clicked.connect(self.button_percent_clicked)
+        button_CE.clicked.connect(self.button_clear_clicked)
+        button_inverse.clicked.connect(self.button_inverse_clicked)
+        button_pow.clicked.connect(self.button_pow_clicked)
+        button_square.clicked.connect(self.button_square_clicked)
 
-        ### =, clear, backspace 버튼을 layout_clear_equal 레이아웃에 추가
-        layout_clear_equal.addWidget(button_clear)
-        layout_clear_equal.addWidget(button_backspace)
-        layout_clear_equal.addWidget(button_equal)
+        ### %, CE, CE 버튼을 layout_clear_equal 레이아웃에 추가
+        layout_clear_equal.addWidget(button_percent, 0 ,0)
+        layout_clear_equal.addWidget(button_clear, 0, 1)
+        layout_clear_equal.addWidget(button_CE,0 ,2)
+        layout_clear_equal.addWidget(button_inverse, 1 ,0)
+        layout_clear_equal.addWidget(button_pow, 1, 1)
+        layout_clear_equal.addWidget(button_square,1 ,2)
+        
 
         ### 숫자 버튼 생성하고, layout_number 레이아웃에 추가
         ### 각 숫자 버튼을 클릭했을 때, 숫자가 수식창에 입력 될 수 있도록 시그널 설정
@@ -82,11 +104,15 @@ class Main(QDialog):
         layout_number.addWidget(button_double_zero, 3, 0)
 
         ### 각 레이아웃을 main_layout 레이아웃에 추가
+        sub_layout.addLayout(layout_clear_equal)
+        sub_layout.addLayout(layout_number)
+        
+        sub2_layout.addLayout(sub_layout)
+        sub2_layout.addLayout(layout_operation)
+        
         main_layout.addLayout(layout_equation_solution)
-        main_layout.addLayout(layout_operation)
-        main_layout.addLayout(layout_clear_equal)
-        main_layout.addLayout(layout_number)
-
+        main_layout.addLayout(sub2_layout)
+        
         self.setLayout(main_layout)
         self.show()
 
@@ -116,6 +142,19 @@ class Main(QDialog):
         equation = self.equation.text()
         equation = equation[:-1]
         self.equation.setText(equation)
+    
+    #just name set
+    def button_percent_clicked(self):
+        self.equation.setText("")
+    
+    def button_square_clicked(self):
+        self.equation.setText("")
+    
+    def button_pow_clicked(self):
+        self.equation.setText("")
+        
+    def button_inverse_clicked(self):
+        self.equation.setText("")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
