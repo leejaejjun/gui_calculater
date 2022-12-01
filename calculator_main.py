@@ -7,6 +7,7 @@ class Main(QDialog):
         self.init_ui()
     #### set Rearrangement of number buttons and creation of additional function buttons
 
+    ### Integration of input window and output window
     
     def init_ui(self):
         ### 서브 레이아웃을 설정
@@ -18,17 +19,15 @@ class Main(QDialog):
         layout_operation = QGridLayout()
         layout_clear_equal = QGridLayout()
         layout_number = QGridLayout()
-        layout_equation_solution = QFormLayout()
+        layout_line_solution = QFormLayout()
 
         ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
-        label_equation = QLabel("Equation: ")
-        label_solution = QLabel("Number: ")
-        self.equation = QLineEdit("")
-        self.solution = QLineEdit("")
+        label_line = QLabel("LINE: ")
+        self.line = QLineEdit("")
+
 
         ### layout_equation_solution 레이아웃에 수식, 답 위젯을 추가
-        layout_equation_solution.addRow(label_equation, self.equation)
-        layout_equation_solution.addRow(label_solution, self.solution)
+        layout_line_solution.addRow(label_line, self.line)
 
         ### back space, 사칙연상, equal 버튼 생성
         button_backspace = QPushButton("Backspace")
@@ -105,6 +104,7 @@ class Main(QDialog):
         button_double_zero.clicked.connect(lambda state, num = "00": self.number_button_clicked(num))
         layout_number.addWidget(button_double_zero, 3, 0)
 
+
         ### 각 레이아웃을 sub_layout, main_layout 레이아웃에 추가
         sub_layout.addLayout(layout_clear_equal)
         sub_layout.addLayout(layout_number)
@@ -115,6 +115,7 @@ class Main(QDialog):
         main_layout.addLayout(layout_equation_solution)
         main_layout.addLayout(sub2_layout)
         
+
         self.setLayout(main_layout)
         self.show()
 
@@ -122,28 +123,28 @@ class Main(QDialog):
     ### functions ###
     #################
     def number_button_clicked(self, num):
-        equation = self.equation.text()
-        equation += str(num)
-        self.equation.setText(equation)
+        line = self.line.text()
+        line += str(num)
+        self.line.setText(line)
 
     def button_operation_clicked(self, operation):
-        equation = self.equation.text()
-        equation += operation
-        self.equation.setText(equation)
+        line = self.line.text()
+        line += operation
+        self.equation.setText(line)
 
     def button_equal_clicked(self):
-        equation = self.equation.text()
-        solution = eval(equation)
+        line = self.line.text()
+        solution = eval(line)
         self.solution.setText(str(solution))
 
     def button_clear_clicked(self):
-        self.equation.setText("")
-        self.solution.setText("")
+        self.line.setText("")
 
     def button_backspace_clicked(self):
-        equation = self.equation.text()
+        equation = self.line.text()
         equation = equation[:-1]
-        self.equation.setText(equation)
+
+        self.line.setText(equation)
     
     #just name set 
     def button_percent_clicked(self):
