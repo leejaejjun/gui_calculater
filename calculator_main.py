@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QDialog,QVBoxLayout ,QHBoxLayout, QGridLayout, QFormLayout, QLabel, QLineEdit, QPushButton, QApplication
+import math
 
 class Main(QDialog):
     def __init__(self):
@@ -136,27 +137,36 @@ class Main(QDialog):
         solution = eval(line)
         self.solution.setText(str(solution))
 
+    #done
     def button_clear_clicked(self):
         self.line.setText("")
 
+    #done
     def button_backspace_clicked(self):
         equation = self.line.text()
         equation = equation[:-1]
 
         self.line.setText(equation)
     
-    #just name set 
     def button_percent_clicked(self):
-        self.equation.setText("")
+        self.line.setText("")
     
+    #done
     def button_square_clicked(self):
-        self.equation.setText("")
+        tmpnum = self.line.text()
+        tmpnum = math.sqrt(int(tmpnum))
+        self.line.setText(str(tmpnum))
     
+    #done
     def button_pow_clicked(self):
-        self.equation.setText("")
-        
+        tmpnum = self.line.text()
+        tmpnum = int(tmpnum) ** 2
+        self.line.setText(str(tmpnum))
+    #done    
     def button_inverse_clicked(self):
-        self.equation.setText("")
+        tmpnum = self.line.text()
+        tmpnum = 1 / int(tmpnum)
+        self.line.setText(str(tmpnum))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
