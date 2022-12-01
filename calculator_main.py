@@ -5,8 +5,9 @@ class Main(QDialog):
     def __init__(self):
         super().__init__()
         self.init_ui()
+    #### set Rearrangement of number buttons and creation of additional function buttons
 
-    ##start ui adds
+    
     def init_ui(self):
         ### 서브 레이아웃을 설정
         main_layout = QVBoxLayout()
