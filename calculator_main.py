@@ -67,7 +67,7 @@ class Main(QDialog):
 
         ### %, C, CE, 1/x, x^2, 2√x 버튼 클릭 시 시그널 설정
         button_clear.clicked.connect(self.button_clear_clicked)
-        button_percent.clicked.connect(self.button_percent_clicked)
+        button_percent.clicked.connect(lambda state, operation = "%": self.button_percent_clicked(operation))
         button_CE.clicked.connect(self.button_clear_clicked)
         button_inverse.clicked.connect(self.button_inverse_clicked)
         button_pow.clicked.connect(self.button_pow_clicked)
@@ -122,20 +122,34 @@ class Main(QDialog):
     #################
     ### functions ###
     #################
+
+    
+    #done
     def number_button_clicked(self, num):
         line = self.line.text()
         line += str(num)
         self.line.setText(line)
 
     def button_operation_clicked(self, operation):
-        line = self.line.text()
-        line += operation
-        self.equation.setText(line)
+        global number
+        global oper
+        number= self.line.text()
+        oper = operation
+        self.line.setText("")
 
     def button_equal_clicked(self):
         line = self.line.text()
-        solution = eval(line)
-        self.solution.setText(str(solution))
+        if oper == "+":
+            solution = int(number) + int(line)
+        if oper == "-":
+            solution = int(number) - int(line)
+        if oper == "*":
+            solution = int(number) * int(line)
+        if oper == "/":
+            solution = int(number) / int(line)
+        if oper == "%":
+            solution = int(number) % int(line)
+        self.line.setText(str(solution))
 
     #done
     def button_clear_clicked(self):
@@ -148,7 +162,11 @@ class Main(QDialog):
 
         self.line.setText(equation)
     
-    def button_percent_clicked(self):
+    def button_percent_clicked(self, operation):
+        global number
+        global oper
+        number= self.line.text()
+        oper = operation
         self.line.setText("")
     
     #done
