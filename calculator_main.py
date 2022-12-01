@@ -15,17 +15,15 @@ class Main(QDialog):
         layout_operation = QHBoxLayout()
         layout_clear_equal = QHBoxLayout()
         layout_number = QGridLayout()
-        layout_equation_solution = QFormLayout()
+        layout_line_solution = QFormLayout()
 
         ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
         label_line = QLabel("LINE: ")
-        #label_solution = QLabel("Number: ")
-        self.equation = QLineEdit("")
-        #self.solution = QLineEdit("")
+        self.line = QLineEdit("")
+
 
         ### layout_equation_solution 레이아웃에 수식, 답 위젯을 추가
-        layout_equation_solution.addRow(label_line, self.equation)
-        #layout_equation_solution.addRow(label_solution, self.solution)
+        layout_line_solution.addRow(label_line, self.line)
 
         ### 사칙연상 버튼 생성
         button_plus = QPushButton("+")
@@ -83,7 +81,7 @@ class Main(QDialog):
         layout_number.addWidget(button_double_zero, 3, 0)
 
         ### 각 레이아웃을 main_layout 레이아웃에 추가
-        main_layout.addLayout(layout_equation_solution)
+        main_layout.addLayout(layout_line_solution)
         main_layout.addLayout(layout_operation)
         main_layout.addLayout(layout_clear_equal)
         main_layout.addLayout(layout_number)
@@ -95,28 +93,27 @@ class Main(QDialog):
     ### functions ###
     #################
     def number_button_clicked(self, num):
-        equation = self.equation.text()
-        equation += str(num)
-        self.equation.setText(equation)
+        line = self.line.text()
+        line += str(num)
+        self.line.setText(line)
 
     def button_operation_clicked(self, operation):
-        equation = self.equation.text()
-        equation += operation
-        self.equation.setText(equation)
+        line = self.line.text()
+        line += operation
+        self.equation.setText(line)
 
     def button_equal_clicked(self):
-        equation = self.equation.text()
-        solution = eval(equation)
+        line = self.line.text()
+        solution = eval(line)
         self.solution.setText(str(solution))
 
     def button_clear_clicked(self):
-        self.equation.setText("")
-        self.solution.setText("")
+        self.line.setText("")
 
     def button_backspace_clicked(self):
-        equation = self.equation.text()
+        equation = self.line.text()
         equation = equation[:-1]
-        self.equation.setText(equation)
+        self.line.setText(equation)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
