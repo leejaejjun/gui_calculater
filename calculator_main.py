@@ -130,6 +130,7 @@ class Main(QDialog):
         line += str(num)
         self.line.setText(line)
 
+    #done
     def button_operation_clicked(self, operation):
         global number
         global oper
@@ -137,6 +138,7 @@ class Main(QDialog):
         oper = operation
         self.line.setText("")
 
+    #done
     def button_equal_clicked(self):
         line = self.line.text()
         if oper == "+":
@@ -162,6 +164,7 @@ class Main(QDialog):
 
         self.line.setText(equation)
     
+    #done
     def button_percent_clicked(self, operation):
         global number
         global oper
