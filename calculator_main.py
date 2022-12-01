@@ -5,9 +5,8 @@ class Main(QDialog):
     def __init__(self):
         super().__init__()
         self.init_ui()
-    #### set Rearrangement of number buttons and creation of additional function buttons
-
-    ### Integration of input window and output window
+    
+    ### function fix start
     
     def init_ui(self):
         ### 서브 레이아웃을 설정
@@ -112,7 +111,7 @@ class Main(QDialog):
         sub2_layout.addLayout(sub_layout)
         sub2_layout.addLayout(layout_operation)
         
-        main_layout.addLayout(layout_equation_solution)
+        main_layout.addLayout(layout_line_solution)
         main_layout.addLayout(sub2_layout)
         
 
