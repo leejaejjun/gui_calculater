@@ -8,6 +8,7 @@ class Main(QDialog):
 
     ##start ui adds
     def init_ui(self):
+        ### 서브 레이아웃을 설정
         main_layout = QVBoxLayout()
         sub_layout = QVBoxLayout()
         sub2_layout = QHBoxLayout()
@@ -28,7 +29,7 @@ class Main(QDialog):
         layout_equation_solution.addRow(label_equation, self.equation)
         layout_equation_solution.addRow(label_solution, self.solution)
 
-        ### 사칙연상 버튼 생성
+        ### back space, 사칙연상, equal 버튼 생성
         button_backspace = QPushButton("Backspace")
         button_plus = QPushButton("+")
         button_minus = QPushButton("-")
@@ -36,7 +37,7 @@ class Main(QDialog):
         button_division = QPushButton("/")
         button_equal = QPushButton("=")
 
-        ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정
+        ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정 && back space, equal을 클릭했을 때, 해당기능이 실행될수 있게 한다.
         button_equal.clicked.connect(self.button_equal_clicked)
         button_plus.clicked.connect(lambda state, operation = "+": self.button_operation_clicked(operation))
         button_minus.clicked.connect(lambda state, operation = "-": self.button_operation_clicked(operation))
@@ -45,7 +46,7 @@ class Main(QDialog):
         button_backspace.clicked.connect(self.button_backspace_clicked)
         
         
-        ### 사칙연산 버튼을 layout_operation 레이아웃에 추가
+        ### back space, 사칙연상, equal을 layout_operation 레이아웃에 추가
         layout_operation.addWidget(button_backspace)
         layout_operation.addWidget(button_plus)
         layout_operation.addWidget(button_minus)
@@ -55,16 +56,16 @@ class Main(QDialog):
         
         
 
-        ### %, CE, CE 버튼 생성
-        button_clear = QPushButton("C")
+        ### %, C, CE, 1/x, x^2, 2√x 버튼 생성
         button_percent = QPushButton("%")
+        button_clear = QPushButton("C")
         button_CE = QPushButton("CE")
         button_inverse = QPushButton("1/x")
         button_pow = QPushButton("x^2")
         button_square = QPushButton("2√x")
         
 
-        ### %, CE, CE 버튼 클릭 시 시그널 설정
+        ### %, C, CE, 1/x, x^2, 2√x 버튼 클릭 시 시그널 설정
         button_clear.clicked.connect(self.button_clear_clicked)
         button_percent.clicked.connect(self.button_percent_clicked)
         button_CE.clicked.connect(self.button_clear_clicked)
@@ -72,7 +73,7 @@ class Main(QDialog):
         button_pow.clicked.connect(self.button_pow_clicked)
         button_square.clicked.connect(self.button_square_clicked)
 
-        ### %, CE, CE 버튼을 layout_clear_equal 레이아웃에 추가
+        ### %, C, CE, 1/x, x^2, 2√x 버튼을 layout_clear_equal 레이아웃에 추가
         layout_clear_equal.addWidget(button_percent, 0 ,0)
         layout_clear_equal.addWidget(button_clear, 0, 1)
         layout_clear_equal.addWidget(button_CE,0 ,2)
@@ -103,7 +104,7 @@ class Main(QDialog):
         button_double_zero.clicked.connect(lambda state, num = "00": self.number_button_clicked(num))
         layout_number.addWidget(button_double_zero, 3, 0)
 
-        ### 각 레이아웃을 main_layout 레이아웃에 추가
+        ### 각 레이아웃을 sub_layout, main_layout 레이아웃에 추가
         sub_layout.addLayout(layout_clear_equal)
         sub_layout.addLayout(layout_number)
         
@@ -143,7 +144,7 @@ class Main(QDialog):
         equation = equation[:-1]
         self.equation.setText(equation)
     
-    #just name set
+    #just name set 
     def button_percent_clicked(self):
         self.equation.setText("")
     
