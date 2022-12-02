@@ -19,10 +19,6 @@ MAC : brew install pyqt5
 
 It is a calculator that can perform arithmetic operations.
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 
 ## Contributing
 
