@@ -15,8 +15,8 @@ MAC : brew install pyqt5
 ```
 
 ## program execution
-<img width="358" alt="스크린샷 2022-12-02 오전 10 14 18" src="https://user-images.githubusercontent.com/77061306/205192632-66dfaa32-17e3-4bc9-8042-950bd4e6317e.png">
 
+<img width="358" alt="스크린샷 2022-12-02 오후 5 09 58" src="https://user-images.githubusercontent.com/77061306/205246204-0f6486ed-f267-4ed4-bfd6-d96e3d53ff63.png">
 
 
 It is a calculator that can perform arithmetic operations.
