@@ -58,8 +58,8 @@ class Main(QDialog):
 
         ### %, C, CE, 1/x, x^2, 2√x 버튼 생성
         button_percent = QPushButton("%")
-        button_clear = QPushButton("C")
         button_CE = QPushButton("CE")
+        button_clear = QPushButton("C")
         button_inverse = QPushButton("1/x")
         button_pow = QPushButton("x^2")
         button_square = QPushButton("2√x")
